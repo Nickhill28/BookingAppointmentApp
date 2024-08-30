@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Management App</title>
+</head>
+<body>
+  <h1>User Management App</h1>
+  <form action="/api/users" method="post">
+    <label>
+      Username:
+      <input type="text" name="username" />
+    </label>
+    <br />
+    <label>
+      Phone Number:
+      <input type="text" name="phoneNumber" />
+    </label>
+    <br />
+    <label>
+      Email:
+      <input type="email" name="email" />
+    </label>
+    <br />
+    <button type="submit">Create User</button>
+  </form>
+
+  <h2>Users</h2>
+  <ul>
+    <% users.forEach((user) => { %>
+      <li>
+        <%= user.username %> (<%= user.phoneNumber %>) - <%= user.email %>
+        <form action="/api/users/<%= user.id %>" method="post">
+          <input type="hidden" name="_method" value="DELETE" />
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+
+  <script src="/script.js"></script>
+</body>
+</html>
